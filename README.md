@@ -38,7 +38,7 @@ const htmlMsg = sexyMail.ejaculate({
     link: { text: "Call to action", url: "LINK_URL" }, // sexy link
     header: "Another header", 
     code: "123 456", // sexy code
-    list: { 
+    list: { // you can use items or summary or both:
         items: [
            {
             img: "IMG_URL";
@@ -46,8 +46,8 @@ const htmlMsg = sexyMail.ejaculate({
             quantity: "ITEM_QUANTITY";
             price: "ITEM_PRICE";
             features: "OPTIONAL_STRING";
-            }
-        ],
+            } 
+        ], 
         summary: [
           {
             name: "ITEM_NAME";
@@ -64,7 +64,7 @@ const htmlMsg = sexyMail.ejaculate({
 
 Now you can use your `htmlMsg` as a email message. 
 
-You have complete freedom in building ejaculate argumetn object. You can use the components in any number and order.
+You have complete freedom in building ejaculate argument object. You can use the components in any number and order.
 
 
 ## License
