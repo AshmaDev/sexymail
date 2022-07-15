@@ -133,21 +133,21 @@ export function makeSexyList(obj: { [key: string]: any }) {
   return sexyListContainer(list);
 }
 
-const pp = {
-  header: (text) => sexyHeader(text),
-  text: (text) => sexyText(text),
-  link: ({ text, url }) => sexyLink(text, url),
-  code: (text) => sexyCode(text),
-  list: (obj) => makeSexyList(obj),
-};
-
-export function ejaculate(seed: SeedProps) {
+export function ejaculate(this, seed: SeedProps) {
   let cum;
+
+  const pp = {
+    header: (text) => this.sexyHeader(text),
+    text: (text) => this.sexyText(text),
+    link: ({ text, url }) => this.sexyLink(text, url),
+    code: (text) => this.sexyCode(text),
+    list: (obj) => this.makeSexyList(obj),
+  };
 
   Object.entries(seed).forEach((entry) => {
     const [key, value] = entry;
     cum += pp[key](value);
   });
 
-  return sexyContainer(cum);
+  return this.sexyContainer(cum);
 }
