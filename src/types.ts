@@ -9,6 +9,7 @@ export interface Config {
     primary: string;
     text: string;
   };
+  footer: string;
 }
 
 export interface SeedProps {

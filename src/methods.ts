@@ -5,7 +5,7 @@ export function sexyContainer(this, content: string, info: string = "") {
   return (
     `<div leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" style="background-color: ` +
     this.colors.background +
-    `; height:auto !important;width:100% !important; font-family: Helvetica,Arial,sans-serif !important; margin-top: 40px; margin-bottom: 40px;"> <center> <table bgcolor="` +
+    `; height:auto !important;width:100% !important; font-family: Helvetica,Arial,sans-serif !important; padding-top: 40px; margin-bottom: 40px;"> <center> <table bgcolor="` +
     this.colors.foreground +
     `" border="0" cellpadding="0" cellspacing="0" style="max-width:600px; background-color:` +
     this.colors.foreground +
@@ -149,5 +149,5 @@ export function ejaculate(this, seed: SeedProps) {
     cum += pp[key](value);
   });
 
-  return this.sexyContainer(cum);
+  return this.sexyContainer(cum, this.footer);
 }
