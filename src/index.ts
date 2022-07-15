@@ -30,4 +30,4 @@ SexyMail.prototype = {
   ejaculate,
 };
 
-export default SexyMail;
+export { SexyMail, Config };
