@@ -143,8 +143,6 @@ class SexyMail {
   }
 
   public ejaculate(seed: Seed[]): string {
-    let cum = "";
-
     const pp = {
       header: (text: string) => this.sexyHeader(text),
       text: (text: string) => this.sexyText(text),
@@ -154,11 +152,9 @@ class SexyMail {
       blank: (context: string) => context,
     };
 
-    seed.forEach((drop) => {
-      cum += pp[drop.type](drop.value);
-    });
+    const cum = seed.map((drop) => pp[drop.type](drop.value));
 
-    return this.sexyContainer(cum, this.config.footer);
+    return this.sexyContainer(cum.join(""), this.config.footer);
   }
 }
 
