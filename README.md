@@ -33,7 +33,20 @@ const sexyMail = new SexyMail({
     },
     footer: "optional footer text"
 });
-```  
+``` 
+
+### Options
+
+What options are available for formatting messages?  
+
+Type  | Value  | Description
+-------------  | -------------  | ------------- 
+header  | string  | Returns formatted header
+text  |  string  | Returns formatted paragraph
+link  | { text: string, url: string } | Returns formatted anchor
+code  | string  | Returns formatted code (number/string)
+list  | { items: ListItem[], summary: SummaryItem[] }  | Returns formatted list of items / summary
+blank  | string  | Returns unstyled text
   
 ### Example verification message:   
 ```ts
