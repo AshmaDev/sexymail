@@ -158,4 +158,4 @@ class SexyMail {
   }
 }
 
-export { SexyMail, Config };
+export { SexyMail, Config, Seed };
