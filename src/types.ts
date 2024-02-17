@@ -37,5 +37,5 @@ export interface List {
 
 export interface Seed {
   type: "header" | "text" | "link" | "code" | "list" | "blank";
-  value: string & Link & List;
+  value: string | Link | List;
 }
