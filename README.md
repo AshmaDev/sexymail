@@ -1,7 +1,7 @@
 # SexyMail
 
 <div align="center">
-  <img src="img/sexymail.png" alt="doge-bot" width="250" height="250">
+  <img src="img/sexymail.png" alt="Sexy Mail" width="250" height="250">
   <p>A simple Node.js tool for generating sexy emails</p>
 </div>  
 
