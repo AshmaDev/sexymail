@@ -1,4 +1,12 @@
-import { Config, Seed, ListItem, SummaryItem, Link, List } from "./types";
+import {
+  Config,
+  Seed,
+  SeedValue,
+  ListItem,
+  SummaryItem,
+  Link,
+  List,
+} from "./types";
 
 class SexyMail {
   private config: Config;
@@ -152,7 +160,9 @@ class SexyMail {
       blank: (context: string) => context,
     };
 
-    const cum = seed.map((drop) => pp[drop.type](drop.value));
+    const cum = seed.map((drop: Seed) =>
+      pp[drop.type](drop.value as SeedValue)
+    );
 
     return this.sexyContainer(cum.join(""), this.config.footer);
   }

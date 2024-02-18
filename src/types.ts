@@ -27,15 +27,17 @@ export interface SummaryItem {
 
 export interface Link {
   text: string;
-  url: string
-};
+  url: string;
+}
 
 export interface List {
   items?: ListItem[];
-  summary?: SummaryItem[]
+  summary?: SummaryItem[];
 }
 
 export interface Seed {
   type: "header" | "text" | "link" | "code" | "list" | "blank";
   value: string | Link | List;
 }
+
+export type SeedValue = string & Link & List;
