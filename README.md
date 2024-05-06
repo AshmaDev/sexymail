@@ -12,7 +12,7 @@ This package includes a simple HTML generator that allows you to create a sexy e
 ### Installation
 
 ```sh
-npm i https://github.com/ashmadev/sexymail.git
+npm i sexymail
 ```
 
 ### Configuration  
