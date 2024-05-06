@@ -109,7 +109,9 @@ const htmlMsg2 = sexyMail.ejaculate([
 ]);
 ```
 
-Now you can use your `htmlMsg` as a email message. 
+> Feel free to use the more formal `sexyMail.generate()` method to create your email.
+
+You can now use your `htmlMsg` as a email message. 
 
 You have complete freedom in building ejaculate argument object. You can use the components in any number and order.
 
