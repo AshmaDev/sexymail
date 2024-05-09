@@ -150,6 +150,10 @@ class SexyMail {
     return this.sexyListContainer(list);
   }
 
+  public generate(seed: Seed[]): string {
+    return this.ejaculate(seed);
+  }
+
   public ejaculate(seed: Seed[]): string {
     const pp = {
       header: (text: string) => this.sexyHeader(text),
