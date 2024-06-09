@@ -16,7 +16,7 @@ class SexyMail {
     this.config = config;
   }
 
-  private sexyContainer(content: string, info?: string): string {
+  private createContainer(content: string, info?: string): string {
     return `<div leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" style="background-color:${
       this.config.colors.background
     }; height:auto !important;width:100% !important; font-family: Helvetica,Arial,sans-serif !important; padding-top: 40px; margin-bottom: 40px;"> 
@@ -60,15 +60,15 @@ class SexyMail {
     </div>`;
   }
 
-  private sexyHeader(title: string): string {
+  private createHeader(title: string): string {
     return `<h3 style="color:${this.config.colors.headingText}; font-size:18px; line-height: 1.6; font-weight:500;">${title}</h3>`;
   }
 
-  private sexyText(text: string): string {
+  private createText(text: string): string {
     return `<p style="color:${this.config.colors.text}; font-size: 14px; padding-bottom: 10px; line-height: 1.4;">${text}</p>`;
   }
 
-  private sexyLink(text: string, url: string): string {
+  private createLink(text: string, url: string): string {
     return `<table border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width:100%;border-collapse:collapse;">
         <tbody>
           <tr>
@@ -88,11 +88,11 @@ class SexyMail {
       </table>`;
   }
 
-  private sexyCode(text: string): string {
+  private createCodeBlock(text: string): string {
     return `<p style="background-color:${this.config.colors.background}; color: ${this.config.colors.headingText}; padding: 8px 15px; border-radius: 10px; display: inline-block; margin-bottom:20px; font-size: 24px; line-height: 1.4; font-family: Courier New, Courier, monospace; font-weight: 600; margin-top:0">${text}</p>`;
   }
 
-  private sexyListItem(item: ListItem): string {
+  private createListItem(item: ListItem): string {
     return `<tr>
         <td style="padding-top:0px; padding-bottom:20px; width:140px "> 
           <img src="${item?.img}" style="width: 114px; height: 85px; object-fit: cover; border-radius: 5px; " /> 
@@ -110,7 +110,7 @@ class SexyMail {
       </tr>`;
   }
 
-  private sexySummary(item: SummaryItem): string {
+  private createSummaryItem(item: SummaryItem): string {
     return `<tr>
         <td colSpan="2" style="padding-top:0px; padding-bottom:5px; text-align: right; color: ${this.config.colors.text};"> 
           <p style="font-size: 12px; line-height: 1; margin-top:5px; vertical-align:top; margin-bottom: 0;">
@@ -125,11 +125,11 @@ class SexyMail {
       </tr>`;
   }
 
-  private sexyListContainer(items: string): string {
+  private createListContainer(items: string): string {
     return `<table style="width: 100%;">${items}</table>`;
   }
 
-  private makeSexyList(obj: {
+  private generateList(obj: {
     items?: ListItem[];
     summary?: SummaryItem[];
   }): string {
@@ -137,38 +137,34 @@ class SexyMail {
 
     if (obj.items && obj.items.length > 0) {
       obj.items.forEach((item) => {
-        list += this.sexyListItem(item);
+        list += this.createListItem(item);
       });
     }
 
     if (obj.summary && obj.summary.length > 0) {
       obj.summary.forEach((item) => {
-        list += this.sexySummary(item);
+        list += this.createSummaryItem(item);
       });
     }
 
-    return this.sexyListContainer(list);
+    return this.createListContainer(list);
   }
 
   public generate(seed: Seed[]): string {
-    return this.ejaculate(seed);
-  }
-
-  public ejaculate(seed: Seed[]): string {
-    const pp = {
-      header: (text: string) => this.sexyHeader(text),
-      text: (text: string) => this.sexyText(text),
-      link: ({ text, url }: Link) => this.sexyLink(text, url),
-      code: (text: string) => this.sexyCode(text),
-      list: (obj: List) => this.makeSexyList(obj),
-      blank: (context: string) => context,
+    const elements = {
+      header: (text: string) => this.createHeader(text),
+      text: (text: string) => this.createText(text),
+      link: ({ text, url }: Link) => this.createLink(text, url),
+      code: (text: string) => this.createCodeBlock(text),
+      list: (obj: List) => this.generateList(obj),
+      blank: (content: string) => content,
     };
 
-    const cum = seed.map((drop: Seed) =>
-      pp[drop.type](drop.value as SeedValue)
+    const content = seed.map((element: Seed) =>
+      elements[element.type](element.value as SeedValue)
     );
 
-    return this.sexyContainer(cum.join(""), this.config.footer);
+    return this.createContainer(content.join(""), this.config.footer);
   }
 }
 
