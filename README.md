@@ -50,7 +50,7 @@ blank  | string  | Returns unstyled text
   
 ### Example verification message:   
 ```ts
-const htmlMsg = sexyMail.ejaculate([
+const htmlMsg = sexyMail.generate([
   {
     type: "header",
     value: "Verification link",
@@ -68,7 +68,7 @@ const htmlMsg = sexyMail.ejaculate([
   
 ### Example confirmation message with list:   
 ```ts
-const htmlMsg2 = sexyMail.ejaculate([
+const htmlMsg2 = sexyMail.generate([
   {
     type: "header",
     value: "Confirmation of purchase",
@@ -108,8 +108,6 @@ const htmlMsg2 = sexyMail.ejaculate([
   },
 ]);
 ```
-
-> Feel free to use the more formal `sexyMail.generate()` method to create your email.
 
 You can now use your `htmlMsg` as a email message. 
 
