@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SexyMail generates the correct email HTML 1`] = `
+"
+      <div style=\\"background-color:#ffffff; height:auto !important;width:100% !important; font-family: Helvetica,Arial,sans-serif !important; padding-top: 40px; margin-bottom: 40px;\\">
+        <center>
+          <table border=\\"0\\" cellpadding=\\"0\\" cellspacing=\\"0\\" style=\\"max-width:600px; width: 100%; background-color:#f4f4f4;border:1px solid #e4e2e2;border-collapse:separate !important; border-radius:15px;border-spacing:0;color:#242128; margin:0;padding:40px;\\">
+            <tbody>
+              <tr><td align=\\"left\\" valign=\\"center\\" style=\\"padding-bottom:40px;border-top:0;height:100% !important;width:100% !important;\\"><center><img src=\\"http://example.com/logo.png\\" height=\\"30\\" style=\\"max-height:30px\\" /></center></td></tr>
+              <tr><td style=\\"padding-top:10px;border-top:1px solid #e4e2e2\\"><h3 style=\\"color:#111111; font-size:18px; line-height: 1.6; font-weight:500;\\">Welcome!</h3><p style=\\"color:#333333; font-size: 14px; padding-bottom: 10px; line-height: 1.4;\\">This is a sample email.</p>
+      <table border=\\"0\\" cellpadding=\\"0\\" cellspacing=\\"0\\" width=\\"100%\\" style=\\"min-width:100%;border-collapse:collapse;\\">
+        <tbody>
+          <tr>
+            <td style=\\"padding:15px 0px;\\" valign=\\"top\\" align=\\"center\\">
+              <table border=\\"0\\" cellpadding=\\"0\\" cellspacing=\\"0\\" style=\\"border-collapse:separate !important;\\">
+                <tbody>
+                  <tr>
+                    <td align=\\"center\\" valign=\\"middle\\" style=\\"padding:14px;\\">
+                      <a href=\\"http://example.com\\" title=\\"Click here\\" target=\\"_blank\\" style=\\"font-size: 14px; line-height: 1.5; font-weight: 700; letter-spacing: 1px; padding: 15px 40px; text-align:center; text-decoration:none; color:#ffffff; border-radius: 10px; background-color:#007bff;\\">
+                        Click here
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table></td></tr>
+            </tbody>
+          </table>
+          <table style=\\"margin-top:30px; padding-bottom:20px; margin-bottom: 40px;\\"><tbody><tr><td align=\\"center\\" valign=\\"center\\"><p style=\\"font-size: 12px; text-decoration: none;line-height: 1; color:#333333; margin-top:0px; margin-bottom:5px;\\">Sample Footer</p></td></tr></tbody></table>
+        </center>
+      </div>"
+`;
