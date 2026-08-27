@@ -73,4 +73,26 @@ describe("SexyMail", () => {
     expect(html).toContain("border-radius:32px");
     expect(html).toContain("border-radius: 999px");
   });
+
+  test("renders orderedList as numbered steps", () => {
+    const html = sexyMail.generate([
+      {
+        type: "orderedList",
+        value: {
+          items: [
+            "Show your card when you visit the store",
+            "Collect stamps for your purchases",
+            "Unlock rewards and redeem them easily",
+          ],
+        },
+      },
+    ]);
+
+    expect(html).toContain("1.");
+    expect(html).toContain("2.");
+    expect(html).toContain("3.");
+    expect(html).toContain("Show your card when you visit the store");
+    expect(html).toContain("Collect stamps for your purchases");
+    expect(html).toContain("Unlock rewards and redeem them easily");
+  });
 });

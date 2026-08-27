@@ -43,9 +43,13 @@ export interface List {
   summary?: SummaryItem[];
 }
 
-export interface Seed {
-  type: "header" | "text" | "link" | "code" | "list" | "blank";
-  value: string | Link | List;
+export interface OrderedList {
+  items: string[];
 }
 
-export type SeedValue = string & Link & List;
+export interface Seed {
+  type: "header" | "text" | "link" | "code" | "list" | "orderedList" | "blank";
+  value: string | Link | List | OrderedList;
+}
+
+export type SeedValue = string & Link & List & OrderedList;

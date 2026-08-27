@@ -6,6 +6,7 @@ import {
   SummaryItem,
   Link,
   List,
+  OrderedList,
   Radius,
 } from "./types";
 
@@ -42,6 +43,10 @@ class SexyMail {
     "font-size: 12px; line-height: 1; margin-top:5px; vertical-align:top; margin-bottom: 0; color: {text};";
   private static summaryValueStyles =
     "font-size: 14px; line-height: 1; margin-top:5px; vertical-align:top;color:{text}; white-space:nowrap; margin-bottom: 0;";
+  private static orderedNumberStyles =
+    "color:{headingText}; font-size: 14px; line-height: 1.4; font-weight: 600; padding: 0 12px 8px 0; vertical-align: top; width: 24px;";
+  private static orderedTextStyles =
+    "color:{text}; font-size: 14px; line-height: 1.4; padding: 0 0 8px 0; vertical-align: top;";
 
   constructor(config: Config) {
     if (!config) throw new Error("Config is missing");
@@ -232,6 +237,29 @@ class SexyMail {
     return this.createListContainer(listContent);
   }
 
+  private generateOrderedList(obj: OrderedList): string {
+    const numberStyles = SexyMail.orderedNumberStyles.replace(
+      "{headingText}",
+      this.config.colors.headingText
+    );
+    const textStyles = SexyMail.orderedTextStyles.replace(
+      "{text}",
+      this.config.colors.text
+    );
+
+    const rows = (obj.items ?? [])
+      .map(
+        (item, index) => `
+      <tr>
+        <td style="${numberStyles}">${index + 1}.</td>
+        <td style="${textStyles}">${item}</td>
+      </tr>`
+      )
+      .join("");
+
+    return `<table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:10px;">${rows}</table>`;
+  }
+
   public generate(seed: Seed[]): string {
     const elements = {
       header: (text: string) => this.createHeader(text),
@@ -239,6 +267,7 @@ class SexyMail {
       link: (obj: Link) => this.createLink(obj),
       code: (text: string) => this.createCodeBlock(text),
       list: (obj: List) => this.generateList(obj),
+      orderedList: (obj: OrderedList) => this.generateOrderedList(obj),
       blank: (text: string) => text,
     };
 
@@ -250,4 +279,4 @@ class SexyMail {
   }
 }
 
-export { SexyMail, Config, Seed, Radius };
+export { SexyMail, Config, Seed, Radius, OrderedList };
