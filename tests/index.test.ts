@@ -39,4 +39,38 @@ describe("SexyMail", () => {
 
     expect(emailHTML).toMatchSnapshot();
   });
+
+  test("applies custom border color and zero radius", () => {
+    const custom = new SexyMail({
+      ...config,
+      radius: { card: 0, control: 0, image: 0 },
+      colors: {
+        ...config.colors,
+        border: "#112233",
+      },
+    });
+
+    const html = custom.generate([{ type: "text", value: "Hello" }]);
+
+    expect(html).toContain("border:1px solid #112233");
+    expect(html).toContain("border-radius:0px");
+    expect(html).toContain("border-top:1px solid #112233");
+  });
+
+  test("applies custom radius to buttons", () => {
+    const custom = new SexyMail({
+      ...config,
+      radius: { card: 32, control: 999, image: 16 },
+    });
+
+    const html = custom.generate([
+      {
+        type: "link",
+        value: { text: "Go", url: "http://example.com" },
+      },
+    ]);
+
+    expect(html).toContain("border-radius:32px");
+    expect(html).toContain("border-radius: 999px");
+  });
 });

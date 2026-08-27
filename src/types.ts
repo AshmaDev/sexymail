@@ -1,3 +1,9 @@
+export interface Radius {
+  card?: number;
+  control?: number;
+  image?: number;
+}
+
 export interface Config {
   logo?: string;
   colors: {
@@ -8,7 +14,9 @@ export interface Config {
     secondary: string;
     primary: string;
     text: string;
+    border?: string;
   };
+  radius?: Radius;
   footer?: string;
 }
 
