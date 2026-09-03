@@ -18,6 +18,7 @@ export interface Config {
   };
   radius?: Radius;
   footer?: string;
+  subfooter?: string;
 }
 
 export interface ListItem {

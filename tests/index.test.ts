@@ -95,4 +95,20 @@ describe("SexyMail", () => {
     expect(html).toContain("Collect stamps for your purchases");
     expect(html).toContain("Unlock rewards and redeem them easily");
   });
+
+  test("renders subfooter below the footer", () => {
+    const custom = new SexyMail({
+      ...config,
+      footer: "Sent from Stamply",
+      subfooter: '<a href="https://example.com/unsub">Unsubscribe</a>',
+    });
+
+    const html = custom.generate([{ type: "text", value: "Hello" }]);
+
+    expect(html).toContain("Sent from Stamply");
+    expect(html).toContain("Unsubscribe");
+    expect(html.indexOf("Sent from Stamply")).toBeLessThan(html.indexOf("Unsubscribe"));
+    expect(html).toContain("font-size: 10px");
+    expect(html).toContain("opacity: 0.5");
+  });
 });

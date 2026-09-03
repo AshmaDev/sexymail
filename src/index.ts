@@ -27,6 +27,8 @@ class SexyMail {
     "max-width:600px; width: 100%; background-color:{foreground};border:1px solid {border};border-collapse:separate !important; border-radius:{cardRadius}px;border-spacing:0;color:#242128; margin:0;padding:40px;";
   private static footerStyles =
     "font-size: 12px; text-decoration: none;line-height: 1; color:{text}; margin-top:0px; margin-bottom:5px;";
+  private static subfooterStyles =
+    "font-size: 10px; text-decoration: none; line-height: 1.4; color:{text}; opacity: 0.5; margin-top:8px; margin-bottom:0;";
   private static headingStyles =
     "color:{headingText}; font-size:18px; line-height: 1.6; font-weight:500;";
   private static textStyles =
@@ -71,7 +73,7 @@ class SexyMail {
       : "";
   };
 
-  private createContainer(content: string, info?: string): string {
+  private createContainer(content: string, info?: string, subfooter?: string): string {
     const radii = this.getRadius();
     const border = this.getBorderColor();
     const containerStyles = SexyMail.containerStyles.replace(
@@ -86,8 +88,13 @@ class SexyMail {
       "{text}",
       this.config.colors.text
     );
+    const subfooterStyles = SexyMail.subfooterStyles.replace(
+      "{text}",
+      this.config.colors.text
+    );
 
     const logo = this.createLogo();
+    const hasFooterBlock = Boolean(info || subfooter);
 
     return `
       <div style="${containerStyles}">
@@ -103,8 +110,16 @@ class SexyMail {
             </tbody>
           </table>
           ${
-            info
-              ? `<table style="margin-top:30px; padding-bottom:20px; margin-bottom: 40px;"><tbody><tr><td align="center" valign="center"><p style="${footerStyles}">${info}</p></td></tr></tbody></table>`
+            hasFooterBlock
+              ? `<table style="margin-top:30px; padding-bottom:20px; margin-bottom: 40px;"><tbody>${
+                  info
+                    ? `<tr><td align="center" valign="center"><p style="${footerStyles}">${info}</p></td></tr>`
+                    : ""
+                }${
+                  subfooter
+                    ? `<tr><td align="center" valign="center"><p style="${subfooterStyles}">${subfooter}</p></td></tr>`
+                    : ""
+                }</tbody></table>`
               : ""
           }
         </center>
@@ -275,7 +290,7 @@ class SexyMail {
       elements[element.type](element.value as SeedValue)
     );
 
-    return this.createContainer(content.join(""), this.config.footer);
+    return this.createContainer(content.join(""), this.config.footer, this.config.subfooter);
   }
 }
 

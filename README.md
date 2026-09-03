@@ -32,6 +32,7 @@ const sexyMail = new SexyMail({
         text: "#5a5a5a", // body text color
     },
     footer: "optional footer text"
+    subfooter: "optional smaller line below the footer"
 });
 ``` 
 
