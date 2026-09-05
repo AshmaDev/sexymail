@@ -48,9 +48,16 @@ export interface OrderedList {
   items: string[];
 }
 
-export interface Seed {
-  type: "header" | "text" | "link" | "code" | "list" | "orderedList" | "blank";
-  value: string | Link | List | OrderedList;
+export interface ImageLink {
+  url: string;
+  img: string;
+  alt?: string;
+  width?: number;
 }
 
-export type SeedValue = string & Link & List & OrderedList;
+export interface Seed {
+  type: "header" | "text" | "link" | "code" | "list" | "orderedList" | "blank" | "imageLink";
+  value: string | Link | List | OrderedList | ImageLink;
+}
+
+export type SeedValue = string & Link & List & OrderedList & ImageLink;

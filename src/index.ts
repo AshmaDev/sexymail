@@ -7,6 +7,7 @@ import {
   Link,
   List,
   OrderedList,
+  ImageLink,
   Radius,
 } from "./types";
 
@@ -174,6 +175,25 @@ class SexyMail {
       </table>`;
   }
 
+  private createImageLink({ url, img, alt, width }: ImageLink): string {
+    const badgeWidth = width ?? 170;
+    const title = alt?.trim() || "Open link";
+    const linkTableStyles = SexyMail.linkTableStyles;
+
+    return `
+      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="${linkTableStyles}">
+        <tbody>
+          <tr>
+            <td style="padding:8px 0px;" valign="top" align="center">
+              <a href="${url}" title="${title}" target="_blank" style="display:inline-block; text-decoration:none; border:0;">
+                <img src="${img}" alt="${title}" width="${badgeWidth}" style="display:block; width:${badgeWidth}px; max-width:100%; height:auto; border:0;" />
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>`;
+  }
+
   private createCodeBlock(text: string): string {
     const radii = this.getRadius();
     const codeBlockStyles = SexyMail.codeBlockStyles
@@ -280,6 +300,7 @@ class SexyMail {
       header: (text: string) => this.createHeader(text),
       text: (text: string) => this.createText(text),
       link: (obj: Link) => this.createLink(obj),
+      imageLink: (obj: ImageLink) => this.createImageLink(obj),
       code: (text: string) => this.createCodeBlock(text),
       list: (obj: List) => this.generateList(obj),
       orderedList: (obj: OrderedList) => this.generateOrderedList(obj),
@@ -294,4 +315,4 @@ class SexyMail {
   }
 }
 
-export { SexyMail, Config, Seed, Radius, OrderedList };
+export { SexyMail, Config, Seed, Radius, OrderedList, ImageLink };

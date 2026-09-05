@@ -74,6 +74,25 @@ describe("SexyMail", () => {
     expect(html).toContain("border-radius: 999px");
   });
 
+  test("renders imageLink as a centered badge link", () => {
+    const html = sexyMail.generate([
+      {
+        type: "imageLink",
+        value: {
+          url: "https://example.com/apple.pkpass",
+          img: "https://example.com/apple.png",
+          alt: "Add to Apple Wallet",
+          width: 160,
+        },
+      },
+    ]);
+
+    expect(html).toContain('href="https://example.com/apple.pkpass"');
+    expect(html).toContain('src="https://example.com/apple.png"');
+    expect(html).toContain('alt="Add to Apple Wallet"');
+    expect(html).toContain("width:160px");
+  });
+
   test("renders orderedList as numbered steps", () => {
     const html = sexyMail.generate([
       {
